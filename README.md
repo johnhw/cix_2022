@@ -18,8 +18,8 @@ I recommend having [Anaconda]() pre-installed. To create a clean environment for
 
 ## Navigating
 
-* [Part 0](Overview and admin)
-* [Part 1](An introduction to Bayesian methods in HCI)
-* [Part X](Lunch micro-exercise)
-* [Part 2](Three examples: Optimisation, Filtering, Analysis)
-* [Part 3](Practical exercise)
+* [Part I: Overview and admin](i_outline.ipynb)
+* [Part II: Theory and practice](ii_theory_and_practice.ipynb)
+* [Part III: Bayesian HCI](iii_bayesian_hci.ipynb)
+* [Part IV: Filter, optimise and analyse](iv_optimisation_filtering_analysis.ipynb)
+* [Part V: Practical exercise](v_practical_task.ipynb)
