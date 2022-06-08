@@ -8,7 +8,6 @@
 * fix conditional distribution example in probability
 * get a prob. filter example running
 * get bayes opt. example for font sizes completed (create black-box, setup scikit-optimize)
-* merge in simple Bayesian analysis section
 * check and finish all diagrams
 
 * create practical task
