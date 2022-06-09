@@ -23,7 +23,7 @@ def pymc3_sample(n=1000, observed=None):
 def trace_hist(ax, trace, name, c='C1'):
         """Draw a histogram of 'trace' on the given axis 'ax',
         and label it 'name'."""
-        n, bins, patches = ax.hist(trace.ravel(), density=True, bins=30, color=c)                
+        n, bins, patches = ax.hist(np.array(trace).ravel(), density=True, bins=30, color=c)                
         max_n = np.max(n)
         upper, lower = np.percentile(trace, 5.0), np.percentile(trace, 95.0)
         ci_text = f'[{upper:.2f} - {lower:.2f}]'
