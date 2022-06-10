@@ -13,7 +13,9 @@ def plot_gp_samples(ax, xs, ys, **kwargs):
 def render_gp(ax, xs, gp):
 
     norm = scipy.stats.norm(0, 1)
-    y_pred, y_std = gp.predict(xs[:, None], return_std=True)
+    if len(xs.shape)==1:
+        xs = xs[:, None]
+    y_pred, y_std = gp.predict(xs, return_std=True)
     
     y_pred = y_pred.squeeze()
 
@@ -24,9 +26,10 @@ def render_gp(ax, xs, gp):
 
         upper = y_pred + y_std * k1 * 2
         lower = y_pred + y_std * k2 * 2
-        ax.fill_between(xs, upper, lower, color=cmap(norm.pdf(k1)))
-    ys  = gp.sample_y(xs[:, None], 20)
-    plot_gp_samples(ax, xs, ys, c='w', alpha=0.1)
+        ax.fill_between(xs[:,0], upper, lower, color=cmap(norm.pdf(k1)))
+    
+    ys  = gp.sample_y(xs, 20)
+    plot_gp_samples(ax, xs[:,0], ys, c='w', alpha=0.1)
 
 
 def pi(y_pred, y_std):

@@ -1,5 +1,5 @@
 food,like,dislike,fruit
-chicken, 8002, 21, 0
+chicken, 8002, 681, 0
 licorice, 42, 180, 0
 apples, 1921, 202, 1
 octopus, 684, 409, 0
