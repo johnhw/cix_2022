@@ -3,12 +3,12 @@
 * Add worked examples for the functions of probability section
 * Add polls
 
-
-* complete the like/dislike examples
-* fix conditional distribution example in probability
-* get a prob. filter example running
-* get bayes opt. example for font sizes completed (create black-box, setup scikit-optimize)
+* finish prob. filter example running
 * check and finish all diagrams
+* finish Bayesian visualisation section
+* finish papers/discussion for Bayesian cog. modelling (or remove)
+
+* variational example in part II
 
 * create practical task
 * create practical task baseline
