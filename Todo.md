@@ -2,11 +2,16 @@
 
 * Add polls
 
- * finish prob. filter example running (ex1)
-* finish Bayesian visualisation section (ex5)
-* finish papers/discussion for Bayesian cog. modelling (or remove)
+* finish prob. filter example running (ex1)
 
-* variational example in part II
+* check code/notes for clarity
+* II
+* III
+* ex1
+* ex2
+* ex3
+* ex5
+
 
 * create practical task
 * create practical task baseline
