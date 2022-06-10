@@ -1,10 +1,9 @@
 ## Todo
 
-* Add worked examples for the functions of probability section
 * Add polls
 
-* finish prob. filter example running
-* finish Bayesian visualisation section
+ * finish prob. filter example running (ex1)
+* finish Bayesian visualisation section (ex5)
 * finish papers/discussion for Bayesian cog. modelling (or remove)
 
 * variational example in part II
