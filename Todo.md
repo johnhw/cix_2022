@@ -4,7 +4,6 @@
 * Add polls
 
 * finish prob. filter example running
-* check and finish all diagrams
 * finish Bayesian visualisation section
 * finish papers/discussion for Bayesian cog. modelling (or remove)
 
