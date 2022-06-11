@@ -43,14 +43,15 @@ class FilterCanvas:
     def draw_particles(self, particles, weights, y, color="#0000f030"):
         self.canvas.fill_style = color               
         sign = np.where(np.abs(particles[:,0])<0.5, 0, np.sign(particles[:,0]))
-        x = particles[:,1] * sign * self.canvas.width/ 4 + self.canvas.width/2                
+        x = particles[:,1] * sign * self.canvas.width/ 2.5 + self.canvas.width/2                
         self.canvas.fill_circles(x, y, 3)
 
     def draw_prediction(self, filter, y):        
         pf_copy = filter.copy()
-        for i in range(20):
+        for i in range(10):
             pf_copy.update()
-            self.draw_particles(pf_copy.particles, pf_copy.weights, y, color="#3030d0")
+            pf_copy.update()
+            self.draw_particles(pf_copy.particles, pf_copy.weights, y, color=f"#9060d010")
 
         
         
@@ -80,7 +81,7 @@ class FilterCanvas:
 
     def simulate(self):
         y_pos = 0
-        for i in range(20_000):            
+        for i in range(1000):            
             if self.stopping.is_set():
                 break
             with hold_canvas():
