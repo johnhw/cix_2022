@@ -16,8 +16,8 @@
 
 * finish prob. filter example running (ex1)
     * add prediction
-    * add state change/intention distribution
-    
+    * draw state/intention prediction + actuation
+
 
 
 
