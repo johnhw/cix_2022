@@ -24,3 +24,11 @@
 Update command
 git subtree pull --prefix .vim/bundle/fireplace https://github.com/tpope/vim-fireplace.git master --squash 
 
+* Possible practicals:
+* Part I: adjust parameters, make filter work better or worse, incorporate priors
+* Part II: Merge in cooker example
+* Part III: Choose alternative priors; fit a model for a quadratic curve
+* Part V: Visualise another posterior (need to find one first) and give comments.
+
+## REMEMBER
+* Clear all output before starting

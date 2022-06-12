@@ -52,7 +52,7 @@ def create_game_ui(k):
 
     game.therm_label = therm_label
 
-    controls = HBox([cook_30, cook_10, cook_5, cook_1, insert, remove, serve])
+    controls = HBox([cook_30, cook_10, cook_5, cook_1,  serve])
     panel = VBox([title_label, temp_label, therm_label, controls, out])
     display(panel)
 
@@ -64,7 +64,7 @@ class CookingGame:
         self.k = k # thermometer smoothing
         self.chilled = random.choice(["room temperature", "chilled", "frozen"])        
         self.init_temp = init_temps[self.chilled]
-        self.radius = random.uniform(2.5, 6.5)**2
+        self.radius = random.uniform(2.5, 5.5)**2
         self.density = 0.9
         self.heat_capacity = 0.1
         self.oven_temp = np.random.randint(0, 5) * 10 + 150
@@ -77,7 +77,8 @@ class CookingGame:
         self.total_moves = 0
         self.room_temp = 20
         self.total_thermometer_time = 0
-        self.thermometer_insert = 0
+        
+        self.thermometer_insert = np.random.uniform(self.radius/4, 3*self.radius/4)
         self.stopping = False
         self.score = 0
         self.out = None
@@ -93,7 +94,7 @@ class CookingGame:
         over = np.max(temps-mx)
         under = np.min(temps-mn) 
         frozen = np.any(temps<0)
-        return goodness, self.total_thermometer_time, self.total_moves, over, under, frozen
+        return goodness, self.total_thermometer_time,  over, under, frozen
 
     def describe_temp(self):
         under, best, over = optimal_temps(self.meat)
@@ -115,24 +116,11 @@ class CookingGame:
         with self.out:
             print(f"[{self.cooking_time}m] You cook the {self.meat} for {minutes} minutes...")
 
-    def insert(self, distance):
-        # insert or remove the thermometer a bit
-        self.thermometer_insert += np.random.normal(distance, abs(distance/5))
-        with self.out:        
-            if abs(self.thermometer_insert)>self.radius:
-                print("You moved the thermometer out of the meat; putting it back in....")
-                self.thermometer_insert = np.sign(self.thermometer_insert) * self.radius
-            else:
-                if distance < 0:
-                    print("You remove the thermometer slightly.")
-                else:
-                    print("You insert the thermometer further.")
-                    
-        self.total_moves += 1
+  
 
     def serve(self):
         self.stopping = True
-        goodness, t_time, t_moves,  over, under, frozen = self.score_food()
+        goodness, t_time,  over, under, frozen = self.score_food()
         if self.out:
             with self.out:
                 print("You serve the food.")
@@ -143,7 +131,7 @@ class CookingGame:
         
 
                 if self.cooking_time==0:
-                    print(f" You didn't even cook the {self.meat}!")
+                    print(f"You didn't even cook the {self.meat}!")
                     print("What are you doing?!")
                 elif under>0 and over>0:
                     # check for overcookendess
@@ -172,9 +160,9 @@ class CookingGame:
                 if under>0 and over<0:
                     print("The food is nicely cooked.")
                 print()
-                print(f"You spent {t_time:.0f} seconds staring at the thermometer, and moved it {t_moves} times.")
+                print(f"You spent {t_time:.0f} seconds staring at the thermometer.")
                 print(f"Your food scored {100.0*goodness:.1f} points for cookedness.")
-                score = (t_time * -1) + (t_moves * -10) + goodness*500.0
+                score = (t_time * -1)  + goodness*500.0
                 print()
                 print(f"Your overall score is {score:.0f}.") 
                 self.score = score
@@ -235,8 +223,9 @@ def plot_chicken_curve(foods):
     ax.set_title("Chicken internal temperature")
 
 def noise_latency(k):
-    noise = np.exp(k/2-1.7)
-    return noise, k**2
+    k = (k**2) /25+ np.cos(k) 
+    noise = np.exp(k/1.8-1.7-np.sin(k*3.1)*0.85) 
+    return noise*10, k**2+0.2
 
     
 def plot_utility_curves(foods):
