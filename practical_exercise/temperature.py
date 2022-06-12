@@ -2,6 +2,8 @@ import random
 import numpy as np
 import matplotlib.pyplot as plt 
 import scipy.stats as ss
+from ipywidgets import Output, Button, Label, HBox, VBox
+from IPython.display import display
 
 # times in minutes
 # radius in cm
@@ -12,6 +14,14 @@ meat_temps = {"salmon":(49,60,0.7) , "steak":(55, 70,1.1), "shrimp":(61, 64,0.6)
 init_temps = {"room temperature":20, "chilled":4, "frozen":-27}
 
 
+def optimal_temps(meat):
+    mn, mx, density = meat_temps[meat]
+    temps = np.linspace(30, 100, 200)
+    utility = meat_utility(temps, mn, mx)
+    best = temps[np.argmax(utility)]
+    undercooked = mn 
+    overcooked = mx 
+    return undercooked, best, overcooked
 
 
 def expectation_cookedness(temps, meat):
@@ -19,6 +29,35 @@ def expectation_cookedness(temps, meat):
     
 from threading import Thread, Event, Lock 
 import time 
+
+def create_game_ui():    
+    game = CookingGame()
+    cook_30 = Button(description="Cook 30")
+    cook_30.on_click(lambda x: game.cook(30))
+    cook_10 = Button(description="Cook 10")
+    cook_10.on_click(lambda x: game.cook(10))
+    cook_5 = Button(description="Cook 5")
+    cook_5.on_click(lambda x: game.cook(5))
+    cook_1 = Button(description="Cook 1")
+    cook_1.on_click(lambda x: game.cook(1))
+    insert = Button(description="In")
+    insert.on_click(lambda x: game.insert(1))
+    remove = Button(description="Out")
+    remove.on_click(lambda x: game.insert(-1))
+    serve = Button(description="Serve food!")
+    serve.on_click(lambda x:game.serve())
+    title_label = Label(value="You are cooking "+game.describe_food())
+    temp_label = Label(value=game.describe_temp())    
+    therm_label = Label(value='')
+
+    out = Output()
+    game.out = out
+
+    game.therm_label = therm_label
+
+    controls = HBox([cook_30, cook_10, cook_5, cook_1, insert, remove, serve])
+    panel = VBox([title_label, temp_label, therm_label, controls, out])
+    display(panel)
 
 class CookingGame:
     def __init__(self):
@@ -42,6 +81,9 @@ class CookingGame:
         Thread(target=self.update_loop).start()
 
 
+    def describe_temp(self):
+        under, best, over = optimal_temps(self.meat)
+        return f"{self.meat.title()} is best at {best:.0f}C. It is unsafe if any part is below {under:.0f}C and will be overcooked above {over:.0f}C"
 
     def describe_food(self):
         if self.mass>1000:
@@ -49,13 +91,15 @@ class CookingGame:
         else:
             mass = f"{self.mass:.0f}g"
 
-        return f"{mass} of {self.chilled} {self.meat} in an oven at {self.oven_temp}C"
+        return f"{mass} of {self.chilled} [{self.init_temp}C] {self.meat} in an oven at {self.oven_temp}C"
         
     def cook(self, minutes):
         self.thermometer_time = 0
         self.thermometer_temp = 20
         self.thermometer_insert = 0
         self.cooking_time += minutes
+        with self.out:
+            print(f"[{self.cooking_time}m] You cook the {self.meat} for {minutes} minutes...")
 
     def insert(self, distance):
         self.thermometer_time = 0
@@ -111,7 +155,7 @@ class CookingGame:
 
     def thermometer(self):
         if self.therm_label!=None:
-            self.therm_label.value = f"{self.thermometer_time*60.0:4.0f}s {self.thermometer_temp}C. Cooked for {self.cooking_time} mins"
+            self.therm_label.value = f"[{self.thermometer_temp}C].\n{self.thermometer_time*60.0:4.0f}s Cooked for {self.cooking_time} mins"
             self.thermometer_time += 1/60.0
         
 

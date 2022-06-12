@@ -3,3 +3,10 @@ rich
 numpy
 scipy
 matplotlib
+scikit-optimize
+pfilter
+pymc3
+arviz
+ipywidgets
+ipycanvas
+seaborn
