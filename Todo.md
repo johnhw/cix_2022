@@ -1,17 +1,5 @@
 ## Todo
 
-* Add polls
-
-    * Part I
-        + 1 more
-        
-
-    * Part III:
-        * +2 more
-        * What is a p-value (or a confidence interval)
-
-* tune part I and clean up
-
 * practical task
     
     * DGP for food as well as thermometer
@@ -25,8 +13,6 @@ Update command
 git checkout main
 
 
-
-
 git subtree pull --prefix "Day 1 - Bayesian Inference" https://github.com/johnhw/cix_2022 main --squash
 
 * Possible practicals:
@@ -35,5 +21,3 @@ git subtree pull --prefix "Day 1 - Bayesian Inference" https://github.com/johnhw
 * Part III: Choose alternative priors; fit a model for a quadratic curve
 * Part V: Visualise another posterior (need to find one first) and give comments.
 
-## REMEMBER
-* Clear all output before starting
