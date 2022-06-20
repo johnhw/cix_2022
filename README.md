@@ -1,5 +1,6 @@
 <img src="imgs/header.png">
-# cix_2022: Bayesian HCI
+
+# CIX 2022: Bayesian HCI
 
 * Computational Interaction Summer School Notes
 * Saarbrucken, June 2022
