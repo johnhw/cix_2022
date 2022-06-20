@@ -1,10 +1,19 @@
-# cix_2022
-Computational Interaction Summer School Notes, Saarbrucken, June 2022
-John H. Williamson, University of Glasgow
+# cix_2022: Bayesian HCI
 
-These notes are released under an MIT license.
+* Computational Interaction Summer School Notes
+* Saarbrucken, June 2022
+* **John H. Williamson, University of Glasgow**
 
-All notes are available as a Jupyter notebook. 
+## Notes
+* This is a brief introduction to Bayesian methods for HCI. It encompasses:
+  * Basic Bayesian philosophy and probability theory
+  * Bayesian methods in the loop
+  * Bayesian optimisation
+  * Empirical analyis with Bayesian methods
+  * Bayesian cognitive modelling
+  * Visualisation and interaction with Bayesian models
+* These notes are released under an MIT license.
+* All notes are available as a Jupyter notebook. 
 ## Installing
 
 I recommend having [Anaconda](https://www.anaconda.com/products/distribution) pre-installed. To create a clean environment for these notes (my recommended approach):
