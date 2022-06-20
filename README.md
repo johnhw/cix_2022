@@ -1,3 +1,4 @@
+<img src="imgs/header.png">
 # cix_2022: Bayesian HCI
 
 * Computational Interaction Summer School Notes
